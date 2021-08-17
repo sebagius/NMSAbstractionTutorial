@@ -1,0 +1,4 @@
+name: NMSAbstraction
+version: 1.0
+main: dev.agius.minecraft.NMSAbstraction
+description: Hi

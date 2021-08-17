@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'dev.agius.minecraft'
+version '1.0-SNAPSHOT'
+
+subprojects.each { subproject -> evaluationDependsOn(subproject.path)}
+task allJar(type: Jar, dependsOn: subprojects.tasks["build"]) {
+    subprojects.each { subproject ->
+        from subproject.configurations.archives.allArtifacts.files.collect {
+            System.out.println(it.getName())
+            zipTree(it)
+        }
+    }
+}
+
+/*
+task copyAllJar(type: Copy, dependsOn: allJar) {
+    from 'build/libs/'
+    into 'testserver/plugins/'
+}*/
